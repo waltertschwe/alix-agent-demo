@@ -1,7 +1,7 @@
 # alix-agent-demo
 # 🧠 Estate Document Classification & Compliance Agent
 
-This Python application provides a modular system to **classify** and **validate** estate-related documents using AI-driven logic or rule-based checks.
+This Python application provides a modular system to **classify** and **validate** estate-related documents using AI-driven logic with rules based checks.
 
 ## 🔍 What It Does
 
@@ -21,12 +21,19 @@ This Python application provides a modular system to **classify** and **validate
   Coordinates classification and validation steps.
   
 - **`ClassificationAgent`**  
-  Determines the document category based on its content.
-  
-- **`ComplianceAgent`**  
-  Validates the content based on predefined business rules for that category.
+  Uses a local Mistral model (`mistral-7b-instruct`) via `llama-cpp` to determine document category.
 
-## 🧪 Example
+- **`ComplianceAgent`**  
+  Uses the same Mistral model to validate content based on the assigned category.
+    - Prompts the model with predefined rules per category
+    - Interprets the result into structured JSON:
+    ```json
+    {
+        "valid": true,
+        "reason": "Valid"
+    }
+
+## 🧪 Run Application
   Requires python3.11+
 
   Running the application:
